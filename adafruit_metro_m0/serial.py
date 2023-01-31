@@ -100,7 +100,7 @@ def connect(info: SysFS, host: ez_clang_api.Host, m0: ez_clang_api.Device,
             session: ez.repl.Session, stream: ez.repl.serialize.Stream32
             ) -> ez.repl.IOSerializer:
     session.host = host # FIXME: formatExpressionResult()
-    m0.name = "m0"
+    m0.name = session.deviceId
     m0.transport = info.device + " -> Adafruit Metro M0" # TODO: Rename property to 'description' or so
     stream.endian = 'little'
     stream.verbose = 'rpc_bytes' in host.verbose()
