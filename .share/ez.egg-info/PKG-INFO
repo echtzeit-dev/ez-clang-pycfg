@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: ez
+Version: 0.0.6
+Summary: ez-clang Device Layer
+Home-page: http://echtzeit.dev
+Author: Stefan Gränitz
+Author-email: stefan.graenitz@gmail.com
+License: GPLv3
+Description: Python configuration layer for ez-clang device connections
+Keywords: ez-clang bare-metal C++ REPL device layer
+Platform: Linux
