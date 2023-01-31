@@ -8,7 +8,6 @@ if ez_clang_api.Host.debugPython(__debug__):
     debugpy.breakpoint()
 
 import inject
-import os
 import subprocess
 
 import ez.repl
@@ -87,17 +86,17 @@ class TeensyRecovery(ez.repl.serial.Recovery):
         # This looks like a bug. It appeared first time, when the long-blink
         # was introduced as the reboot inidicator. This blocks the Arduino
         # setup() function for a bit.
-        # 
+        #
         # If the delay here is shorter than the boot time, the handshake
-        # sequence gets duplicated into the new stream somehow: 
+        # sequence gets duplicated into the new stream somehow:
         #
         #   ez.repl.OperationFailedException: Disconnect failed.
         #   Message header invalid. All values must be in 32-bit range.
         #   Received bytes interpretation:
-        #     Length:  01 23 57 BD BD 57 23 01 
-        #     Opcode:  01 23 57 BD BD 57 23 01 
-        #     SeqID:   20 00 00 00 00 00 00 00 
-        #     TagAddr: 01 00 00 00 00 00 00 00 
+        #     Length:  01 23 57 BD BD 57 23 01
+        #     Opcode:  01 23 57 BD BD 57 23 01
+        #     SeqID:   20 00 00 00 00 00 00 00
+        #     TagAddr: 01 00 00 00 00 00 00 00
         #
         # Not sure why or how to prevent this. The delay workaround is annoying,
         # but it works for now. MetroM0 shows the same symptom, Due doesn't.
@@ -172,8 +171,7 @@ def setup(stream: ez.repl.IOSerializer, host: ez_clang_api.Host,
                       "-march=armv6", "-mfpu=none", "-mfloat-abi=soft" ]
     teensy.flags += [ "-Og", "-g2", "-ggdb2" ] if teensy.debug else [ "-Os", "-g0" ]
     teensy.flags += [ "-fno-rtti", "-fno-exceptions", "-std=gnu++17", "-nostdlib",
-                      "-felide-constructors", "-ffunction-sections", "-fdata-sections",
-                      "-fsingle-precision-constant" ]
+                      "-felide-constructors", "-ffunction-sections", "-fdata-sections" ]
 
     # Compiler defines
     teensy.flags += [ "-DDEBUG" ] if teensy.debug else [ "-DNDEBUG" ]
