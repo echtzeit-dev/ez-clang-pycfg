@@ -2,8 +2,8 @@ import ez.io
 import ez_clang_api
 if ez_clang_api.Host.debugPython(__debug__):
     import debugpy
-    debugpy.listen(5678)
-    ez.io.note("Python API waiting for debugger. Attach to localhost:5678 to proceed.")
+    debugpy.listen(('0.0.0.0', 5678))
+    ez.io.note("Python API waiting for debugger. Attach to 0.0.0.0:5678 to proceed.")
     debugpy.wait_for_client()
     debugpy.breakpoint()
 
